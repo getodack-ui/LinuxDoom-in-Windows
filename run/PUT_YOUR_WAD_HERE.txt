@@ -1,0 +1,1 @@
+Положи сюда doom1.wad (или doom.wad / doom2.wad). Здесь же лежит готовый doom_mingw.exe, а Visual Studio собирает doom.exe / doom_debug.exe.

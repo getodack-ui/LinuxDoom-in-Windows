@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{6F1C0B1E-3A5D-4D8E-9B7A-2C41D0A5E7F3}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>DoomWin</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>$(DefaultPlatformToolset)</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>$(DefaultPlatformToolset)</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup>
+    <!-- Both configurations build into run\ : put your WAD file there. -->
+    <OutDir>$(SolutionDir)run\</OutDir>
+    <IntDir>$(SolutionDir)obj\$(Configuration)\</IntDir>
+    <LocalDebuggerWorkingDirectory>$(SolutionDir)run\</LocalDebuggerWorkingDirectory>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <TargetName>doom_debug</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <TargetName>doom</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <CompileAs>CompileAsC</CompileAs>
+      <SDLCheck>false</SDLCheck>
+      <ConformanceMode>false</ConformanceMode>
+      <PreprocessorDefinitions>NORMALUNIX;WIN32;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)src\compat;$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>win_compat.h</ForcedIncludeFiles>
+      <!-- 1990s C: truncations, int/pointer mixes and K&amp;R-isms are expected -->
+      <DisableSpecificWarnings>4013;4018;4047;4024;4090;4101;4113;4133;4244;4267;4305;4311;4312;4477;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <!-- the original code is not safe under runtime checks -->
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>winmm.lib;user32.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="src\am_map.h" />
+    <ClInclude Include="src\d_englsh.h" />
+    <ClInclude Include="src\d_event.h" />
+    <ClInclude Include="src\d_french.h" />
+    <ClInclude Include="src\d_items.h" />
+    <ClInclude Include="src\d_main.h" />
+    <ClInclude Include="src\d_net.h" />
+    <ClInclude Include="src\d_player.h" />
+    <ClInclude Include="src\d_textur.h" />
+    <ClInclude Include="src\d_think.h" />
+    <ClInclude Include="src\d_ticcmd.h" />
+    <ClInclude Include="src\doomdata.h" />
+    <ClInclude Include="src\doomdef.h" />
+    <ClInclude Include="src\doomstat.h" />
+    <ClInclude Include="src\doomtype.h" />
+    <ClInclude Include="src\dstrings.h" />
+    <ClInclude Include="src\f_finale.h" />
+    <ClInclude Include="src\f_wipe.h" />
+    <ClInclude Include="src\g_game.h" />
+    <ClInclude Include="src\hu_lib.h" />
+    <ClInclude Include="src\hu_stuff.h" />
+    <ClInclude Include="src\i_net.h" />
+    <ClInclude Include="src\i_sound.h" />
+    <ClInclude Include="src\i_system.h" />
+    <ClInclude Include="src\i_video.h" />
+    <ClInclude Include="src\info.h" />
+    <ClInclude Include="src\m_argv.h" />
+    <ClInclude Include="src\m_bbox.h" />
+    <ClInclude Include="src\m_cheat.h" />
+    <ClInclude Include="src\m_fixed.h" />
+    <ClInclude Include="src\m_menu.h" />
+    <ClInclude Include="src\m_misc.h" />
+    <ClInclude Include="src\m_random.h" />
+    <ClInclude Include="src\m_swap.h" />
+    <ClInclude Include="src\p_inter.h" />
+    <ClInclude Include="src\p_local.h" />
+    <ClInclude Include="src\p_mobj.h" />
+    <ClInclude Include="src\p_pspr.h" />
+    <ClInclude Include="src\p_saveg.h" />
+    <ClInclude Include="src\p_setup.h" />
+    <ClInclude Include="src\p_spec.h" />
+    <ClInclude Include="src\p_tick.h" />
+    <ClInclude Include="src\r_bsp.h" />
+    <ClInclude Include="src\r_data.h" />
+    <ClInclude Include="src\r_defs.h" />
+    <ClInclude Include="src\r_draw.h" />
+    <ClInclude Include="src\r_local.h" />
+    <ClInclude Include="src\r_main.h" />
+    <ClInclude Include="src\r_plane.h" />
+    <ClInclude Include="src\r_segs.h" />
+    <ClInclude Include="src\r_sky.h" />
+    <ClInclude Include="src\r_state.h" />
+    <ClInclude Include="src\r_things.h" />
+    <ClInclude Include="src\s_sound.h" />
+    <ClInclude Include="src\sounds.h" />
+    <ClInclude Include="src\st_lib.h" />
+    <ClInclude Include="src\st_stuff.h" />
+    <ClInclude Include="src\tables.h" />
+    <ClInclude Include="src\v_video.h" />
+    <ClInclude Include="src\w_wad.h" />
+    <ClInclude Include="src\wi_stuff.h" />
+    <ClInclude Include="src\z_zone.h" />
+    <ClInclude Include="src\compat\alloca.h" />
+    <ClInclude Include="src\compat\unistd.h" />
+    <ClInclude Include="src\compat\values.h" />
+    <ClInclude Include="src\compat\win_compat.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\am_map.c" />
+    <ClCompile Include="src\d_items.c" />
+    <ClCompile Include="src\d_main.c" />
+    <ClCompile Include="src\d_net.c" />
+    <ClCompile Include="src\doomdef.c" />
+    <ClCompile Include="src\doomstat.c" />
+    <ClCompile Include="src\dstrings.c" />
+    <ClCompile Include="src\f_finale.c" />
+    <ClCompile Include="src\f_wipe.c" />
+    <ClCompile Include="src\g_game.c" />
+    <ClCompile Include="src\hu_lib.c" />
+    <ClCompile Include="src\hu_stuff.c" />
+    <ClCompile Include="src\i_main.c" />
+    <ClCompile Include="src\info.c" />
+    <ClCompile Include="src\m_argv.c" />
+    <ClCompile Include="src\m_bbox.c" />
+    <ClCompile Include="src\m_cheat.c" />
+    <ClCompile Include="src\m_fixed.c" />
+    <ClCompile Include="src\m_menu.c" />
+    <ClCompile Include="src\m_misc.c" />
+    <ClCompile Include="src\m_random.c" />
+    <ClCompile Include="src\m_swap.c" />
+    <ClCompile Include="src\p_ceilng.c" />
+    <ClCompile Include="src\p_doors.c" />
+    <ClCompile Include="src\p_enemy.c" />
+    <ClCompile Include="src\p_floor.c" />
+    <ClCompile Include="src\p_inter.c" />
+    <ClCompile Include="src\p_lights.c" />
+    <ClCompile Include="src\p_map.c" />
+    <ClCompile Include="src\p_maputl.c" />
+    <ClCompile Include="src\p_mobj.c" />
+    <ClCompile Include="src\p_plats.c" />
+    <ClCompile Include="src\p_pspr.c" />
+    <ClCompile Include="src\p_saveg.c" />
+    <ClCompile Include="src\p_setup.c" />
+    <ClCompile Include="src\p_sight.c" />
+    <ClCompile Include="src\p_spec.c" />
+    <ClCompile Include="src\p_switch.c" />
+    <ClCompile Include="src\p_telept.c" />
+    <ClCompile Include="src\p_tick.c" />
+    <ClCompile Include="src\p_user.c" />
+    <ClCompile Include="src\r_bsp.c" />
+    <ClCompile Include="src\r_data.c" />
+    <ClCompile Include="src\r_draw.c" />
+    <ClCompile Include="src\r_main.c" />
+    <ClCompile Include="src\r_plane.c" />
+    <ClCompile Include="src\r_segs.c" />
+    <ClCompile Include="src\r_sky.c" />
+    <ClCompile Include="src\r_things.c" />
+    <ClCompile Include="src\s_sound.c" />
+    <ClCompile Include="src\sounds.c" />
+    <ClCompile Include="src\st_lib.c" />
+    <ClCompile Include="src\st_stuff.c" />
+    <ClCompile Include="src\tables.c" />
+    <ClCompile Include="src\v_video.c" />
+    <ClCompile Include="src\w_wad.c" />
+    <ClCompile Include="src\wi_stuff.c" />
+    <ClCompile Include="src\z_zone.c" />
+    <ClCompile Include="src\win32\i_net.c" />
+    <ClCompile Include="src\win32\i_sound.c" />
+    <ClCompile Include="src\win32\i_system.c" />
+    <ClCompile Include="src\win32\i_video.c" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>
